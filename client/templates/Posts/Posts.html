@@ -9,8 +9,11 @@
             <br class="clear" />
         </div>
         <div class="row-content">
-            <p class="list-group-item-text"><a href="{{url}}" target="_blank">{{title}}</a></p>
-            <p><a href="http://reddit.com{{permalink}}" target="_blank" class="comment-link">Comments <span class="comment-count">({{comment_count}})</span></a></p>
+            <p class="list-group-item-text"><a href="{{url}}" target="_blank">{{title}}</a>
+            </p>
+            <p><a href="http://reddit.com{{permalink}}" target="_blank" class="comment-link"><span class="comment-count">{{comment_count}} </span>
+            Comment{{comment_s}}</a>
+            </p>
             {{#if thumbnail}}
                 <p class="image-preview-holder">
                     <img class="image-preview" src="{{url}}"/>

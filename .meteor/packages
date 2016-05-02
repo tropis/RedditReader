@@ -5,7 +5,9 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
+# autopublish
 insecure
 http
 fezvrasta:bootstrap-material-design
+
+meteortoys:allthings

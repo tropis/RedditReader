@@ -6,6 +6,13 @@ Meteor.publish('subredditSearch', function(subreddit) {
 
         _.each(response.data.data.children, function(item) {
             var data = item.data;
+            
+            /*
+            console.log(data.id);
+            console.log(data.isUrl);
+            console.log(data);
+            */
+            
             var len = 200;
 
             var post = {
@@ -15,15 +22,26 @@ Meteor.publish('subredditSearch', function(subreddit) {
                 comment_count: data.num_comments,
                 permalink: data.permalink,
                 title: data.title,
-                selftext: false,
+                selftext: '',
                 thumbnail: false
             };
 
-            if (data.selftext != "") {
-                post.selftext = data.selftext.substr(0, len)
-            }
+            post.comment_s = post.comment_count == 1 ? "" : "s";
 
-            if (data.thumbnail != "self" && Meteor.call('isUrl', data.thumbnail)) {
+
+            /* selftext is not used
+            if (typeof data.selftext == 'undefined'){
+                console.log("selftext is undefined");
+            }
+            else{            
+                if (data.selftext != "") {
+                    post.selftext = data.selftext.substr(0, len)
+                }
+            }
+            */
+
+            if (data.thumbnail != "self" && 
+                Meteor.call('isUrl', data.thumbnail)) {
                 post.thumbnail = data.thumbnail
             }
 

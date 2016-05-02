@@ -13,7 +13,18 @@ Tracker.autorun(function() {
 });
 
 Template.body.events({
-    'submit form': function(e, t) {
+    'submit form': function(event) {
+        event.preventDefault();
+              
+        var subreddit = event.target.hey.value;
+        console.log("subreddit is " + subreddit);
+
+        if (subreddit) {
+            Session.set('subreddit', subreddit);
+        }
+    },
+/*
+    'XXsubmit form': function(e, t) {
         e.preventDefault();
 
         var subreddit = t.$('input[type=text]').val();
@@ -22,7 +33,7 @@ Template.body.events({
             Session.set('subreddit', subreddit);
         }
     },
-
+*/
     'click .icon': function(e) {
         e.preventDefault();
 
@@ -33,7 +44,8 @@ Template.body.events({
         if (image.is(':visible')) {
             console.log('show');
             image.slideUp();
-        } else {
+        } 
+        else {
             
             if (Meteor.call('checkSupportedTypes', post.url.substr(post.url.length - 3))) {
                 image.prop('src', post.url).slideDown();
